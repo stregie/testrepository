@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Interview questions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/general.css" rel="stylesheet">
+  <script src="js/jquery-3.5.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+<style>
+  section {
+    margin-bottom: 30px;
+  }
+  p {
+    text-align: left;
+  }
+
+</style>
+
+<script>
+  $(document).ready(function(){
+    // $('#ex01').css('display', 'none');
+    // $('#ex02').css('display', 'none');
+    // $('#ex03').css('display', 'none');
+    // $('#ex04').css('display', 'none');
+  });
+
+  // https://www.programiz.com/javascript/examples
+</script>
+
+<div id = "main-content" class = "container">
+  <div class = "row">
+    <h1 class = "col-sm-12">Edabit</h1>
+    <p>Medium difficulty questions from <a href = "https://edabit.com/challenges/javascript#!">Edabit</a></p>
+  </div>
+
+
+
+  <section id = "ex01">
+    <h4><strong>Example 01:</strong> Tile Teamworks Tactics</h4>
+    <p><a href = "https://edabit.com/challenge/NHfYRHg2tDtcZyykB">Question</a>: In a board game, a piece may advance 1-6 tiles forward depending on the number rolled on a six-sided die. If you advance your piece onto the same tile as another player's piece, both of you earn a bonus.</p>
+    <p>Can you reach your friend's tile number in the next roll? Create a function that takes your position a and your friend's position b and returns a boolean representation of whether it's possible to earn a bonus on any die roll.</p>
+    <ul>
+      <li><code>possibleBonus(3, 7)</code> - <span id = "ex01a"></span></li>
+      <li><code>possibleBonus(1, 9)</code> - <span id = "ex01b"></span></li>
+      <li><code>possibleBonus(5, 3)</code> - <span id = "ex01c"></span></li>
+      <li><code>possibleBonus(5, 5)</code> - <span id = "ex01d"></span></li>
+      <li><code>possibleBonus(-3, 1)</code> - <span id = "ex01e"></span></li>
+      <li><code>possibleBonus(4.3, 6)</code> - <span id = "ex01f"></span></li>
+    </ul>    
+
+    <script>
+      function possibleBonus(a, b){
+        if (a > 0 && b > 0 && a === Math.floor(a) && b === Math.floor(b)){
+          if (a < b && a + 6 >= b){
+            return true;
+          } else {
+            return false;
+          }          
+        } else {
+          return "Only non-zero natural numbers are accepted";
+        }
+      };
+
+      document.querySelector('#ex01a').textContent = possibleBonus(3, 7);
+      document.querySelector('#ex01b').textContent = possibleBonus(1, 9);
+      document.querySelector('#ex01c').textContent = possibleBonus(5, 3); 
+      document.querySelector('#ex01d').textContent = possibleBonus(5, 5); 
+      document.querySelector('#ex01e').textContent = possibleBonus(-3, 1); 
+      document.querySelector('#ex01f').textContent = possibleBonus(4.3, 6); 
+    </script>
+  </section>
+
+  <section id = "ex02">
+    <h4><strong>Example 02:</strong> Perimeters with a Catch</h4>
+    <p><a href = "https://edabit.com/challenge/WEvqZTFcHeYzFn74c">Question</a>: Write a function that takes a number and returns the perimeter of either a circle or a square. The input will be in the form (letter l, number num) where the letter will be either "s" for square, or "c" for circle, and the number will be the side of the square or the radius of the circle.</p>
+    <p>The catch is you can only use arithmetic or comparison operators, which means: No if... else statements. No objects. No arrays. No formatting methods, etc.</p>
+    <p>The goal is to write a short, branch-free piece of code.</p>
+    <ul>
+      <li><code>perimeter("s", 7) ➞ 28</code> - <span id = "ex02a">Haha</span></li>
+      <li><code>perimeter("c", 4) ➞ 25.12</code> - <span id = "ex02b"></span></li>
+      <li><code>perimeter("c", 9) ➞ 56.52</code> - <span id = "ex02c"></span></li>
+    </ul>
+
+    <script>
+      function perimeter(l, num){
+        return +(num * 4 * (l === "s") + num * 2 * Math.PI * (l === "c")).toFixed(2);
+      };
+
+      // document.querySelector('#ex02a').textContent = perimeter("s", 7);
+      let span1 = document.querySelector('#ex02a');
+      console.log("span1", span1);
+      // document.querySelector('#ex02a').textContent = perimeter("s", 7);
+      // document.querySelector('#ex02b').textContent = perimeter("c", 4);
+      // document.querySelector('#ex02c').textContent = perimeter("c", 9);      
+    </script>
+  </section>
+
+  <section id = "ex03">
+    <h4><strong>Example 03:</strong> Number of Digits</h4>
+    <p><a href = "https://edabit.com/challenge/yFJzLfYghz7ZtsyAN">Question</a>: Create a function that will return an integer number corresponding to the amount of digits in the given integer num. Try to solve this challenge without using strings!</p>
+    <ul>
+      <li><code>digitCounter(1000)</code> - <span id = "ex03a"></span></li>
+      <li><code>digitCounter(12)</code> - <span id = "ex03b"></span></li>
+      <li><code>digitCounter(1956372859)</code> - <span id = "ex03c"></span></li>
+      <li><code>digitCounter(0)</code> - <span id = "ex03d"></span></li>
+    </ul>
+
+    <script>
+      function digitCounter(num){
+        let digit = 1;
+
+        while(num > 10){
+          num = num / 10;
+          digit++;
+        };
+
+        return digit;
+      };
+      
+      document.querySelector('#ex03a').textContent = digitCounter(1000);
+      document.querySelector('#ex03b').textContent = digitCounter(12);
+      document.querySelector('#ex03c').textContent = digitCounter(1956372859);
+      document.querySelector('#ex03d').textContent = digitCounter(0);
+    </script>
+  </section>
+
+  <section id = "ex04">
+    <h4><strong>Example 04:</strong> Converting Objects to Arrays</h4>
+    <p>Write a function that converts an object into an array, where each element represents a key-value pair in the form of an array.</p>
+    <ul>
+      <li><code>toArray({ a: 1, b: 2 }) ➞ [["a", 1], ["b", 2]]</code> - <span id = "ex04a"></span></li>
+      <li><code>toArray({ shrimp: 15, tots: 12 }) ➞ [["shrimp", 15], ["tots", 12]]</code> - <span id = "ex04b"></span></li>
+      <li><code>toArray({}) ➞ []</code> - <span id = "ex04c"></span></li>
+    </ul>
+
+
+    <script>
+      let ex04obj1 = { a: 1, b: 2 };
+      let ex04obj2 = { shrimp: 15, tots: 12 };
+      let ex04obj3 = {};
+
+      function toArray(obj){
+        let keys = Object.keys(obj);
+        let arr = [];
+        for (let i = 0; i < keys.length; i++){
+          let key = keys.i;
+          arr.push([keys[i], obj[keys[i]]]);
+        }
+        return arr;
+      };
+      
+      document.querySelector('#ex04a').textContent = JSON.stringify(toArray(ex04obj1));
+      document.querySelector('#ex04b').textContent = JSON.stringify(toArray(ex04obj2));
+      document.querySelector('#ex04c').textContent = JSON.stringify(toArray(ex04obj3));
+    </script>
+  </section>
+
+  <section id = "ex05">
+    <h4><strong>Example 05:</strong> Make a Circle with OOP</h4>
+    <p>Your task is to create a Circle constructor that creates a circle with a radius provided by an argument. The circles constructed must have two methods getArea() (PI*r^2) and getPerimeter() (2*PI*r) which give both respective areas and perimeter (circumference).</p>
+    <ul>
+      <li><code>let circy = new Circle()</code> - perimeter: <span id = "ex05a-p"></span>, area: <span id = "ex05a-a"></span></li>
+      <li><code>let circy = new Circle()</code> - perimeter: <span id = "ex05b-p"></span>, area: <span id = "ex05b-a"></span></li>
+    </ul>
+
+    <script>
+      function Circle(radius){
+        this.radius = radius,
+        this.getArea = () => (this.radius ** 2 * Math.PI).toFixed(2),
+        this.getPerimeter = () => (this.radius * 2 * Math.PI).toFixed(2)
+      };
+      let circy1 = new Circle(11);
+      let circy2 = new Circle(4.44);
+
+      document.querySelector('#ex05a-p').textContent = circy1.getPerimeter();
+      document.querySelector('#ex05a-a').textContent = circy1.getArea();
+      document.querySelector('#ex05b-p').textContent = circy2.getPerimeter();
+      document.querySelector('#ex05b-a').textContent = circy2.getArea();      
+    </script>
+  </section>
+</body>    
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Interview questions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/general.css" rel="stylesheet">
+  <script src="js/jquery-3.5.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+<style>
+  section {
+    margin-bottom: 30px;
+  }
+  p {
+    text-align: left;
+  }
+
+</style>
+
+<script>
+  $(document).ready(function(){
+    // $('#ex01').css('display', 'none');
+    // $('#ex02').css('display', 'none');
+    // $('#ex03').css('display', 'none');
+    // $('#ex04').css('display', 'none');
+  });
+
+  // https://www.programiz.com/javascript/examples
+</script>
+
+<div id = "main-content" class = "container">
+  <div class = "row">
+    <h1 class = "col-sm-12">Edabit</h1>
+    <p>Very hard difficulty questions from <a href = "https://edabit.com/challenges/javascript#!">Edabit</a></p>
+  </div>
+
+
+
+  <section id = "ex01">
+    <h4><strong>Example 01:</strong> Even vs. Odds</h4>
+    <p>If a number is inserted between two elements of an array and odd numbers have at least one odd neighbor and even numbers have at least one even neighbor, it is called a liked spot. Determine how many liked spots can be found in an array for a given number.</p>
+    <ul>
+      <li>Arr: <span id = "ex01a-arr"></span>; Num: <span id = "ex01a-num"></span>; Liked spots: <span id = "ex01a-spots"></span></li>
+      <li>Arr: <span id = "ex01b-arr"></span>; Num: <span id = "ex01b-num"></span>; Liked spots: <span id = "ex01b-spots"></span></li>
+      <li>Arr: <span id = "ex01c-arr"></span>; Num: <span id = "ex01c-num"></span>; Liked spots: <span id = "ex01c-spots"></span></li>
+      <li>Arr: <span id = "ex01d-arr"></span>; Num: <span id = "ex01d-num"></span>; Liked spots: <span id = "ex01d-spots"></span></li>
+    <script>
+      let ex01arr1 = [0, 4, 6, 8];
+      let ex01arr3 = [4, 4, 4, 4, 5];
+      let ex01arr4 = [4, 4];
+
+      let ex01num1 = 9;
+      let ex01num2 = 12;
+      let ex01num3 = 7;
+      let ex01num4 = 8;
+
+      function likedSpots(arr, num){
+        let arrOddOrEven = arr.map((item) => {
+          if (item % 2 === 0){
+            return "Even";
+          } else {
+            return "Odd";
+          }
+        });
+
+        let numOddOrEven = "";
+
+        if (num % 2 === 0){
+          numOddOrEven = "Even";
+        } else {
+          numOddOrEven = "Odd";
+        }
+
+        let likedSpotsCount = 0;
+        for (let i = 1; i < arrOddOrEven.length; i++){
+          if (arrOddOrEven[i-1] === numOddOrEven || arrOddOrEven[i] === numOddOrEven){
+            likedSpotsCount++;
+          }          
+        }
+        return likedSpotsCount;
+      };
+
+      document.querySelector('#ex01a-arr').textContent = JSON.stringify(ex01arr1);
+      document.querySelector('#ex01a-num').textContent = ex01num1;
+      document.querySelector('#ex01a-spots').textContent = likedSpots(ex01arr1, ex01num1);
+
+      document.querySelector('#ex01b-arr').textContent = JSON.stringify(ex01arr1);
+      document.querySelector('#ex01b-num').textContent = ex01num2;
+      document.querySelector('#ex01b-spots').textContent = likedSpots(ex01arr1, ex01num2);
+
+      document.querySelector('#ex01c-arr').textContent = JSON.stringify(ex01arr3);
+      document.querySelector('#ex01c-num').textContent = ex01num3;
+      document.querySelector('#ex01c-spots').textContent = likedSpots(ex01arr3, ex01num3);
+
+      document.querySelector('#ex01d-arr').textContent = JSON.stringify(ex01arr4);
+      document.querySelector('#ex01d-num').textContent = ex01num4;
+      document.querySelector('#ex01d-spots').textContent = likedSpots(ex01arr4, ex01num4);
+
+
+    </script>
+  </section>
+
+  <section id = "ex02">
+    <h4><strong>Example 02:</strong> Working 9 to 5</h4>
+    <p>9h to 17h is regular salary. 17h+ is overtime. Calculate daily salary if the input is: ["Start", "End", "Hourly rate", "Overtime multiplier"] </p>
+    <ul>
+      <li>Input: <span id = "ex02a-in"></span>; Salary: <span id = "ex02a-s"></span></li>
+      <li>Input: <span id = "ex02b-in"></span>; Salary: <span id = "ex02b-s"></span></li>
+      <li>Input: <span id = "ex02c-in"></span>; Salary: <span id = "ex02c-s"></span></li>
+    </ul>
+
+    <script>
+      let ex02arr1 = [9, 17, 30, 1.5];
+      let ex02arr2 = [16, 18, 30, 1.8];
+      let ex02arr3 = [13.25, 15, 30, 1.5];
+
+      function overTime(arr){
+        let start = arr[0];
+        let finish = arr[1];
+        let rate = arr[2];
+        let overMultipl = arr[3];
+
+        let hours = finish - start;
+        let overHours = finish - 17;
+        if(overHours < 0) {
+          overHours = 0;
+        }
+        let salary = hours * rate + ((overMultipl - 1) * rate * overHours);
+        return `$${salary}`;
+      }
+
+      document.querySelector('#ex02a-in').textContent = JSON.stringify(ex02arr1);
+      document.querySelector('#ex02b-in').textContent = JSON.stringify(ex02arr2);
+      document.querySelector('#ex02c-in').textContent = JSON.stringify(ex02arr3);
+
+      document.querySelector('#ex02a-s').textContent = overTime(ex02arr1);
+      document.querySelector('#ex02b-s').textContent = overTime(ex02arr2);
+      document.querySelector('#ex02c-s').textContent = overTime(ex02arr3);
+    </script>
+  </section>
+
+  <section id = "ex03">
+    <h4><strong>Example 03:</strong> Content Analyzer</h4>
+    <p></p>
+    <script>
+      let ex03str2 = "body{blabla} a{color: #fff} a{padding: 0}";
+
+      const ex03str3 = [
+        "a{color: red}",
+        ".class{background-color: #000000}",
+        "#id{padding: 0px}",
+        "The apple has red color.",
+        "Number set: {1, 2, 3, 4}"
+      ];
+
+      function contentAnalyzer(str){
+        // let regex = /^[.#]?\w+\s*\{.*\}$/;
+        let regex = /^[.#]?\w+\s*\{.*\}$/;
+        str.forEach((item) => {
+          console.log(item.match(regex));          
+        })
+      }
+      contentAnalyzer(ex03str3);
+    </script>
+
+
+</body>    
+</html>

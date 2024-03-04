@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Interview questions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/general.css" rel="stylesheet">
+  <script src="js/jquery-3.5.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+<style>
+  p {
+    text-align: left;
+  }
+
+</style>
+
+<script>
+  $(document).ready(function(){
+    // $('#ex01').css('display', 'none');
+    // $('#ex02').css('display', 'none');
+    // $('#ex03').css('display', 'none');
+    // $('#ex04').css('display', 'none');
+  });
+
+  // https://www.programiz.com/javascript/examples
+</script>
+
+<div id = "main-content" class = "container">
+  <div class = "row">
+    <h1 class = "col-sm-12">Array examples</h1>
+    <p></p>
+  </div>
+
+
+
+  <section id = "ex01">
+    <h4><strong>Example 01:</strong> Array Methods</h4>
+    <p>From <a href = "https://www.freecodecamp.org/news/javascript-coding-interview-practice/">FreeCodeCamp</a>.Main Question: Get the passengers' names using the data provided. <br>
+    Bonus Part (a)- Return vegetarians/vegans<br>
+    Bonus Part (b)- Sort passengers by the number of connected flights in descending order</p>
+    <ul>
+      <li>Main: <span id = "ex01m"></span></li>
+      <li>Bonus (a): <span id = "ex01a"></span></li>
+      <li>Bonus (b): <span id = "ex01b"></span></li>
+    </ul>
+    
+    <style>
+      
+    </style>
+
+    <script>
+      const ex01passengers = [
+        {
+          id: 1,
+          passengerName: "Freddie Mercury",
+          isVegetarianOrVegan: false,
+          connectedFlights: 2,
+        },
+        {
+          id: 2,
+          passengerName: "Amy Winehouse",
+          isVegetarianOrVegan: true,
+          connectedFlights: 4,
+        },
+        {
+          id: 3,
+          passengerName: "Kurt Cobain",
+          isVegetarianOrVegan: true,
+          connectedFlights: 3,
+        },
+        {
+          id: 4,
+          passengerName: "Michael Jackson",
+          isVegetarianOrVegan: true,
+          connectedFlights: 1,
+        },
+      ];
+      
+      const ex01names = ex01passengers.map((item) => {
+        return item.passengerName;
+      });
+      $('#ex01m').text(ex01names);
+
+      
+      const ex01vegs = ex01passengers.filter((item) => {
+        return item.isVegetarianOrVegan;
+      }).map((item) => {
+        return item.passengerName;
+      })
+      $('#ex01a').text(ex01vegs);
+      
+
+      const ex01fl = ex01passengers.sort((a, b) => {
+        return b.connectedFlights - a.connectedFlights
+      }).map((item) => {
+        return item.passengerName;
+      });
+      $('#ex01b').text(ex01fl);
+    </script>
+  </section>
+
+  <section id = "ex02">
+    <h4><strong>Example 02:</strong> NMT n</h4>
+    <p><a href = "https://www.geeksforgeeks.org/how-many-numbers-in-the-given-array-are-less-equal-to-the-given-value-using-the-percentile-formula/">Source</a></p>
+    <p>Percentage of elements lower than or equal to 55:</p>
+    <ul>
+      <li>Initial array: <span id = ex02a></span></li>
+      <li>Lower or equal: <span id = ex02b></span></li>
+      <li>Percentage: <span id = ex02c></span></li>
+    </ul>
+
+    <script>
+      const ex02limit = 55;      
+      const ex02arr = [34, 12, 54, 76, 29, 34, 52, 95, 32, 12, 6, 61];
+      const ex02n = ex02arr.filter((item) => {
+        return item <= ex02limit;
+      });
+      
+
+      document.querySelector('#ex02a').textContent = ex02arr;
+      document.querySelector('#ex02b').textContent = ex02n;
+      document.querySelector('#ex02c').textContent = `${ex02n.length / ex02arr.length * 100}%`;
+    </script>
+  </section>
+
+  <section id = "ex03">
+    <h4><strong>Example 03:</strong> Reverse words</h4>
+    <p>Q2 from <a href = "https://www.fullstack.cafe/blog/javascript-code-interview-questions">Source</a></p>
+    <ul>
+      <li>Text: <span id = "ex03a"></span></li>
+      <li>Reversed: <span id = "ex03b"></span></li>
+    </ul>
+
+    <script>
+      const ex03str = "Welcome to this JavaScript Guide!";
+      const ex03words = ex03str.split(" ");
+      const ex03rev = ex03words.map((item) => {
+        let revWord = "";
+        for (let i = 0; i < item.length; i++) {
+          revWord = item[i] + revWord;
+        };
+        return revWord;
+      });
+
+      var ex03revstr = "";
+      ex03rev.forEach((item) => {
+        ex03revstr = ex03revstr.concat(" ", item);
+      });
+
+      document.querySelector('#ex03a').textContent = ex03str;
+      document.querySelector('#ex03b').textContent = ex03revstr;
+    </script>
+  </section>
+
+  <section id = "ex04">
+    <h4><strong>Example 04:</strong> Is it an array?</h4>
+    <p>Q3 Is the variable an array? <span id = "ex04a"></span></p>
+
+    <script>
+      const ex04var = {object: "this"};
+      const ex04a = document.querySelector('#ex04a');
+      if (ex04var.constructor === Array) {
+        ex04a.textContent = "Yes, it is an array.";
+      } else {
+        ex04a.textContent = "No, it is not an array.";
+      }
+    </script>
+  </section>
+
+  <section id = "ex05">
+    <h4><strong>Example 05:</strong> Duplicate array</h4>
+    <p>Q7 Duplicate the array.</p>
+    <ul>
+      <li>Original array: <span id = "ex05a"></span></li>
+      <li>Duplicated: <span id = "ex05b"></span></li>
+    </ul>
+    <script>
+      const ex05arr = [1, 2, 3, 4, 5];
+      document.querySelector('#ex05a').textContent = ex05arr;
+      document.querySelector('#ex05b').textContent = duplicate(ex05arr);
+
+      function duplicate(arr){
+        return arr = arr.concat(arr)
+      };
+    </script>
+  </section>
+//idea: count all matches in a string
+</body>    
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Interview questions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/general.css" rel="stylesheet">
+  <script src="js/jquery-3.5.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+<style>
+  section {
+    margin-bottom: 30px;
+  }
+  p {
+    text-align: left;
+  }
+
+</style>
+
+<script>
+  $(document).ready(function(){
+    // $('#ex01').css('display', 'none');
+    // $('#ex02').css('display', 'none');
+    // $('#ex03').css('display', 'none');
+    // $('#ex04').css('display', 'none');
+  });
+
+  // https://www.programiz.com/javascript/examples
+</script>
+
+<div id = "main-content" class = "container">
+  <div class = "row">
+    <h1 class = "col-sm-12">Edabit</h1>
+    <p>Hard difficulty questions from <a href = "https://edabit.com/challenges/javascript#!">Edabit</a></p>
+  </div>
+
+
+
+  <section id = "ex01">
+    <h4><strong>Example 01:</strong> Tower of Hanoi</h4>
+    <p>Solve the <a href = "https://en.wikipedia.org/wiki/Tower_of_Hanoi#Solution">Tower of Hanoi</a> puzzle for 5 discs.</p>
+    <p>Bonus: Solve for any amount of discs.</p>
+    <table id = "ex01table">
+      <tbody>
+        <tr class = "tr0">
+          <td class = "td1"><div class = "ex01disc"></div></td>
+          <td class = "td2"><div class = "ex01disc"></div></td>
+          <td class = "td3"><div class = "ex01disc"></div></td>
+        </tr>
+        <tr class = "tr1">
+          <td class = "td1"><div class = "ex01disc"></div></td>
+          <td class = "td2"><div class = "ex01disc"></div></td>
+          <td class = "td3"><div class = "ex01disc"></div></td>
+        </tr>
+        <tr class = "tr2">
+          <td class = "td1"><div class = "ex01disc"></div></td>
+          <td class = "td2"><div class = "ex01disc"></div></td>
+          <td class = "td3"><div class = "ex01disc"></div></td>
+        </tr>
+        <tr class = "tr3">
+          <td class = "td1"><div class = "ex01disc"></div></td>
+          <td class = "td2"><div class = "ex01disc"></div></td>
+          <td class = "td3"><div class = "ex01disc"></div></td>
+        </tr>
+        <tr class = "tr4">
+          <td class = "td1"><div class = "ex01disc"></div></td>
+          <td class = "td2"><div class = "ex01disc"></div></td>
+          <td class = "td3"><div class = "ex01disc"></div></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <style>
+      #ex01 table {
+        width: 600px;
+      }
+      #ex01 td {
+/*        border: 1px solid black;*/
+        width: 33.33%;
+      }
+      #ex01 .ex01disc {
+        width: 20;
+        margin: auto;
+        border-radius: 8px;
+        height: 20px;
+        background: green;
+      }
+    </style>
+  </section>
+
+  <script>
+    let column1 = [1, 2, 3, 4, 5];
+    // let column2 = [1, 2, 3, 4, 5];
+    // let column3 = [1, 2, 3, 4, 5];
+    let column2 = [0, 0, 0, 0, 0];
+    let column3 = [0, 0, 0, 0, 0];
+
+    function drawColumns(){
+      for (let i = 0; i < 5; i++){
+        $('#ex01table').children().children(`tr.tr${i}`).children('td.td1').children('div.ex01disc').css('width', `${column1[i] / 6 * 100}%`);
+        $('#ex01table').children().children(`tr.tr${i}`).children('td.td2').children('div.ex01disc').css('width', `${column2[i] / 6 * 100}%`);
+        $('#ex01table').children().children(`tr.tr${i}`).children('td.td3').children('div.ex01disc').css('width', `${column3[i] / 6 * 100}%`);
+      }
+    };
+    drawColumns();
+    setInterval(doit, 1000);
+    function doit(){
+      // define legal move
+
+    };
+  </script>
+
+  <section id = "ex02">
+    <h4><strong>Example 02:</strong> Oddish vs. Evenish</h4>
+    <p>Create a function that determines whether a number is Oddish or Evenish. A number is Oddish if the sum of all of its digits is odd, and a number is Evenish if the sum of all of its digits is even. If a number is Oddish, return "Oddish". Otherwise, return "Evenish".</p>
+    <ul>
+      <li>Number: <span id = "ex02a-num"></span>; Sum: <span id = "ex02a-sum"></span>; Result: <span id = "ex02a-res"></span></li>
+      <li>Number: <span id = "ex02b-num"></span>; Sum: <span id = "ex02b-sum"></span>; Result: <span id = "ex02b-res"></span></li>
+      <li>Number: <span id = "ex02c-num"></span>; Sum: <span id = "ex02c-sum"></span>; Result: <span id = "ex02c-res"></span></li>
+      <li>Number: <span id = "ex02d-num"></span>; Sum: <span id = "ex02d-sum"></span>; Result: <span id = "ex02d-res"></span></li>
+    </ul>
+
+
+    <script>
+      function oddishOrEvenish(num){
+        let sum = 0;
+        num.toString().split('').forEach((digit) => {
+          sum += parseFloat(digit);
+        });
+
+        if (sum % 2 === 0){
+          return {'result': "Evenish", 'sum': sum};
+        } else {
+          return {'result': "Oddish", 'sum': sum};
+        }
+      }
+
+      let num1 = 6286;
+      let num2 = 43;
+      let num3 = 824;
+      let num4 = 7913524;
+
+      document.querySelector('#ex02a-num').textContent = num1;
+      document.querySelector('#ex02a-sum').textContent = oddishOrEvenish(num1).sum;
+      document.querySelector('#ex02a-res').textContent = oddishOrEvenish(num1).result;
+
+      document.querySelector('#ex02b-num').textContent = num2;
+      document.querySelector('#ex02b-sum').textContent = oddishOrEvenish(num2).sum;
+      document.querySelector('#ex02b-res').textContent = oddishOrEvenish(num2).result;
+
+      document.querySelector('#ex02c-num').textContent = num3;
+      document.querySelector('#ex02c-sum').textContent = oddishOrEvenish(num3).sum;
+      document.querySelector('#ex02c-res').textContent = oddishOrEvenish(num3).result;
+
+      document.querySelector('#ex02d-num').textContent = num4;
+      document.querySelector('#ex02d-sum').textContent = oddishOrEvenish(num4).sum;
+      document.querySelector('#ex02d-res').textContent = oddishOrEvenish(num4).result;
+    </script>
+  </section>
+
+  <section id = "ex03">
+    <h4><strong>Example 03:</strong> Smooth sentences</h4>
+    <p>A smooth sentence is one where the last letter of each word is identical to the first letter the following word (and not case sensitive, so "A" would be the same as "a").</p>
+    <p>Create a function that determines whether the input sentence is a smooth sentence, returning a boolean value true if it is, false if it is not.</p>
+    <ul>
+      <li>"<span id = "ex03a-s"></span>" - <span id = "ex03a-r"></span></li>
+      <li>"<span id = "ex03b-s"></span>" - <span id = "ex03b-r"></span></li>
+      <li>"<span id = "ex03c-s"></span>" - <span id = "ex03c-r"></span></li>
+    </ul>
+
+    <script>
+      let sentence1 = "Marta appreciated deep perpendicular right trapezoids";
+      let sentence2 = "Someone is outside the doorway";
+      let sentence3 = "She eats super righteously";
+
+      function isSmooth(sentence){
+        let words = sentence.split(' ');
+        let isSmooth = true;
+
+        for (let i = 0; i < words.length - 1; i++){
+          let word = words[i];
+          let lastLetter = word[word.length - 1].toLowerCase();
+
+          let nextWord = words[i + 1];
+          let firstLetterofNext = nextWord[0].toLowerCase();
+
+          // console.log(lastLetter, firstLetterofNext);
+          
+          if (lastLetter != firstLetterofNext){
+            isSmooth = false;
+          }
+        }
+
+        return isSmooth;
+      };
+
+      document.querySelector('#ex03a-s').textContent = sentence1;
+      document.querySelector('#ex03a-r').textContent = isSmooth(sentence1);
+
+      document.querySelector('#ex03b-s').textContent = sentence2;
+      document.querySelector('#ex03b-r').textContent = isSmooth(sentence2);
+
+      document.querySelector('#ex03c-s').textContent = sentence3;
+      document.querySelector('#ex03c-r').textContent = isSmooth(sentence3);      
+    </script>
+  </section>
+
+  <section id = "ex04">
+    <h4><strong>Example 04:</strong> Length of a Nested Array</h4>
+    <p>The .length property on an array will return the number of elements in the array. Nested elements counts as one. Write a function that returns the total number of non-nested items in a nested array.</p>
+    <ul>
+      <li>Array: <span id = "ex04a-arr"></span>; Flat array: <span id = "ex04a-flat"></span>; Length: <span id = "ex04a-length"></span></li>
+      <li>Array: <span id = "ex04b-arr"></span>; Flat array: <span id = "ex04b-flat"></span>; Length: <span id = "ex04b-length"></span></li>
+      <li>Array: <span id = "ex04c-arr"></span>; Flat array: <span id = "ex04c-flat"></span>; Length: <span id = "ex04c-length"></span></li>
+      <li>Array: <span id = "ex04d-arr"></span>; Flat array: <span id = "ex04d-flat"></span>; Length: <span id = "ex04d-length"></span></li>
+      <li>Array: <span id = "ex04e-arr"></span>; Flat array: <span id = "ex04e-flat"></span>; Length: <span id = "ex04e-length"></span></li>
+    </ul>
+
+
+    <script>
+      let ex04arr1 = [1, [2, 3]];
+      let ex04arr2 = [1, [2, [3, 4]]];
+      let ex04arr3 = [1, [2, [3, [4, [5, 6]]]]];
+      let ex04arr4 = [1, [2], 1, [2], 1];
+      let ex04arr5 = [];
+      
+
+      function getLength(arr){
+        let containsArray = true;
+        
+        while (containsArray) {
+          containsArray = false;
+
+          arr.forEach((item) => {
+            if(typeof(item) === "object"){
+              containsArray = true;
+            };
+          });
+
+          if (containsArray) {
+            arr = arr.flat();
+          }
+        }
+        return {'array': arr, 'arrayLength': arr.length};
+      };
+
+      document.querySelector('#ex04a-arr').textContent = JSON.stringify(ex04arr1);
+      document.querySelector('#ex04a-flat').textContent = JSON.stringify(getLength(ex04arr1).array);
+      document.querySelector('#ex04a-length').textContent = getLength(ex04arr1).arrayLength;
+
+      document.querySelector('#ex04b-arr').textContent = JSON.stringify(ex04arr2);
+      document.querySelector('#ex04b-flat').textContent = JSON.stringify(getLength(ex04arr2).array);
+      document.querySelector('#ex04b-length').textContent = getLength(ex04arr2).arrayLength;
+
+      document.querySelector('#ex04c-arr').textContent = JSON.stringify(ex04arr3);
+      document.querySelector('#ex04c-flat').textContent = JSON.stringify(getLength(ex04arr3).array);
+      document.querySelector('#ex04c-length').textContent = getLength(ex04arr3).arrayLength;
+
+      document.querySelector('#ex04d-arr').textContent = JSON.stringify(ex04arr4);
+      document.querySelector('#ex04d-flat').textContent = JSON.stringify(getLength(ex04arr4).array);
+      document.querySelector('#ex04d-length').textContent = getLength(ex04arr4).arrayLength;
+
+      document.querySelector('#ex04e-arr').textContent = JSON.stringify(ex04arr5);
+      document.querySelector('#ex04e-flat').textContent = JSON.stringify(getLength(ex04arr5).array);
+      document.querySelector('#ex04e-length').textContent = getLength(ex04arr5).arrayLength;      
+    </script>
+  </section>
+
+
+</body>    
+</html>
